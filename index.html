@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – NJEUHA AURELE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Thèmes : les variables seront écrasées par les classes .theme-dark, .theme-light, .theme-accent */
+    :root {
+      /* thème sombre par défaut */
+      --bg:       #0e0e0e;
+      --bg2:      #161616;
+      --bg3:      #1e1e1e;
+      --border:   #2a2a2a;
+      --text:     #e8e8e8;
+      --muted:    #888;
+      --accent:   #4f8ef7;
+      --accent2:  #a78bfa;
+      --tag-bg:   #1e1e1e;
+      --tag-border: #2e2e2e;
+    }
+
+    /* Thème clair */
+    .theme-light {
+      --bg:       #f5f5f5;
+      --bg2:      #ffffff;
+      --bg3:      #f0f0f0;
+      --border:   #d0d0d0;
+      --text:     #111111;
+      --muted:    #555;
+      --accent:   #2266cc;
+      --accent2:  #8b5cf6;
+      --tag-bg:   #eaeaea;
+      --tag-border: #ccc;
+    }
+
+    /* Thème accent (couleurs chaudes) */
+    .theme-accent {
+      --bg:       #1a0c0c;
+      --bg2:      #2a1515;
+      --bg3:      #351c1c;
+      --border:   #6b3a3a;
+      --text:     #fce8e8;
+      --muted:    #c9a0a0;
+      --accent:   #f97316;
+      --accent2:  #facc15;
+      --tag-bg:   #2a1515;
+      --tag-border: #6b3a3a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 52px;
+      background: rgba(var(--bg-rgb, 14,14,14), 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      gap: 20px;
+    }
+    /* Pour le support de la couleur de fond en RGB (utilisé pour le blur) */
+    body.theme-dark { --bg-rgb: 14,14,14; }
+    body.theme-light { --bg-rgb: 245,245,245; }
+    body.theme-accent { --bg-rgb: 26,12,12; }
+    nav {
+      background: rgba(var(--bg-rgb, 14,14,14), 0.85);
+    }
+    nav .nav-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text);
+    }
+    nav .nav-links { display: flex; gap: 28px; }
+    nav .nav-links a {
+      font-size: 13px; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    nav .nav-links a:hover { color: var(--text); }
+    /* selecteur de thème */
+    .theme-selector {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+    }
+    .theme-selector:hover {
+      border-color: var(--accent);
+    }
+
+    /* ── MAIN WRAPPER ── */
+    main { max-width: 780px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── SECTION SPACING ── */
+    section { padding: 56px 0 0; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── HERO ── */
+    .hero-icon {
+      font-size: 38px; margin-bottom: 20px;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-body {
+      display: flex; align-items: flex-start;
+      gap: 40px; margin-bottom: 0;
+    }
+    .hero-text { flex: 1; animation: fadeUp .7s ease both; }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 42px; font-weight: 800;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px; font-weight: 600;
+      margin-bottom: 12px; color: var(--text);
+    }
+    .hero-bio { color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .hero-photo {
+      width: 130px; height: 160px;
+      border-radius: 10px;
+      object-fit: cover; object-position: top center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      animation: fadeUp .8s ease both;
+    }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 40px 0;
+    }
+    .stat-item { padding: 8px 0; }
+    .stat-item:not(:last-child) {
+      border-right: 1px solid var(--border);
+      padding-right: 32px;
+      margin-right: 32px;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px; font-weight: 800;
+      color: var(--text); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { color: var(--muted); font-size: 13px; }
+
+    /* ── SKILLS ── */
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px; font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .tab-btn {
+      padding: 8px 16px;
+      font-size: 13px; font-family: 'DM Sans', sans-serif;
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px; transition: color .2s, border-color .2s;
+    }
+    .tab-btn.active { color: var(--text); border-bottom-color: var(--text); }
+    .tab-content { display: none; }
+    .tab-content.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .skill-tag {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; font-size: 13px; color: var(--text);
+      transition: border-color .2s, background .2s;
+      cursor: default;
+    }
+    .skill-tag:hover { border-color: #444; background: var(--bg3); }
+    .skill-tag .ico { font-size: 14px; }
+
+    /* ── BRANDS ── */
+    .brands-sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+    .brands-row {
+      display: flex; flex-wrap: wrap;
+      align-items: center; gap: 32px;
+    }
+    .brand-name {
+      font-size: 22px; font-weight: 300;
+      color: #3a3a3a; letter-spacing: -.02em;
+      font-family: 'Syne', sans-serif;
+      transition: color .2s;
+    }
+    .brand-name:hover { color: var(--text); }
+
+    /* ── PROJECTS ── */
+    .proj-tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .proj-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color .25s, transform .25s;
+      cursor: pointer;
+    }
+    .proj-card:hover { border-color: #444; transform: translateY(-3px); }
+    .proj-img {
+      width: 100%; height: 155px;
+      object-fit: cover; background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: #333;
+    }
+    .proj-img img { width: 100%; height: 100%; object-fit: cover; }
+    .proj-img.placeholder { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+    .proj-img.placeholder2 { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #252525 100%); }
+    .proj-img.placeholder3 { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 50%, #2a3a4a 100%); }
+    .proj-img.placeholder4 { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); }
+    .proj-info { padding: 14px 16px 16px; }
+    .proj-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .proj-desc { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proj-tag {
+      font-size: 11px; padding: 3px 8px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 4px; color: var(--muted);
+    }
+    .proj-tag a { color: var(--muted); text-decoration: none; }
+    .proj-tag a:hover { color: var(--accent); }
+
+    /* ── CONTACT & FORM ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-top: 4px;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; font-size: 13px;
+      transition: border-color .2s;
+    }
+    .contact-card:hover { border-color: #444; }
+    .contact-card .ico { font-size: 16px; }
+    .contact-card a { color: var(--text); text-decoration: none; }
+
+    /* formulaire */
+    .form-card {
+      margin-top: 28px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+    .form-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .btn-submit {
+      background: var(--accent);
+      border: none;
+      padding: 12px 20px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    .btn-submit:hover {
+      filter: brightness(0.9);
+    }
+    .btn-submit:active {
+      transform: scale(0.97);
+    }
+
+    /* ── FOOTER ── */
+    footer { margin-top: 56px; }
+    .footer-block {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+    .footer-block-title {
+      font-size: 11px; letter-spacing: .1em;
+      text-transform: uppercase; font-weight: 600;
+      color: var(--muted); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-block p { font-size: 13px; color: var(--muted); }
+    .footer-block a { color: var(--accent); text-decoration: none; }
+    .footer-social { display: flex; gap: 20px; margin-top: 8px; }
+    .footer-social a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-social a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero-body { flex-direction: column-reverse; }
+      .hero-photo { width: 100%; height: 200px; }
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+      .stat-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+      .tab-content.active { grid-template-columns: 1fr 1fr; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 18px; }
+      nav .nav-links { display: none; }
+      .theme-selector { margin-left: auto; }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-name">NJEUHA AURELE DORIAN</span>
+  <div class="nav-links">
+    <a href="#skills">Compétences</a>
+    <a href="#projects">Projets</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <select id="themeSelect" class="theme-selector">
+    <option value="dark">🌙 Thème sombre</option>
+    <option value="light">☀️ Thème clair</option>
+    <option value="accent">🎨 Thème accent</option>
+  </select>
+</nav>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section>
+    <div class="hero-icon">💼</div>
+    <div class="hero-body">
+      <div class="hero-text">
+        <h1 class="hero-name">NJEUHA AURELE <br>DORIAN</h1>
+        <p class="hero-title">Développeur · Applications Mobiles &amp; Web</p>
+        <p class="hero-bio">
+          Étudiant en 2ᵉ année à l'Institut Universitaire de la Côte de Douala,
+          filière Technologies de l'Information — spécialité Programmation et Applications Mobiles.
+          Passionné par la conception d'interfaces élégantes, d'applications web dynamiques et le développement d'applications
+          utiles et performantes.
+        </p>
+      </div>
+      <img class="hero-photo" src="./images/profil.png" alt="Photo de profil" />
+    </div>
+  </section>
+
+  <hr class="divider" style="margin-top:40px">
+
+  <!-- ── STATS ── -->
+  <div class="stats-grid fade-in">
+    <div class="stat-item">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Années de formation</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Projets réalisés</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Technologies maîtrisées</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── SKILLS ── (avec bouton Diplômes ajouté) -->
+  <section id="skills" class="fade-in">
+    <h2 class="section-title">Compétences</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(event,'expertise')">🎓 Formation & Compétences</button>
+      <button class="tab-btn" onclick="switchTab(event,'software')">💻 Technologies & Langages</button>
+      <button class="tab-btn" onclick="switchTab(event,'language')">🌐 Langues</button>
+      <button class="tab-btn" onclick="switchTab(event,'diplomas')">📜 Diplômes</button>
+    </div>
+
+    <div id="expertise" class="tab-content active">
+      <div class="skill-tag"><span class="ico"></span> Dev. Mobile</div>
+      <div class="skill-tag"><span class="ico"></span> Dev. Web</div>
+      <div class="skill-tag"><span class="ico"></span> Bases de données</div>
+      <div class="skill-tag"><span class="ico"></span> Algorithmique</div>
+      <div class="skill-tag"><span class="ico"></span> Systèmes &amp; Réseaux</div>
+      <div class="skill-tag"><span class="ico"></span> UI / UX Design</div>
+      <div class="skill-tag"><span class="ico"></span> Droit</div>
+      <div class="skill-tag"><span class="ico"></span> Economie</div>
+      <div class="skill-tag"><span class="ico"></span> Système d'Information I & II</div>
+      <div class="skill-tag"><span class="ico"></span> Outils complémentaires à la Programmation</div>
+      <div class="skill-tag"><span class="ico"></span> Mathématiques</div>
+      <div class="skill-tag"><span class="ico"></span> Rédaction Professionnelle</div>
+      <div class="skill-tag"><span class="ico"></span> Modélisation et conception 3D (bases)</div>
+    </div>
+
+    <div id="software" class="tab-content">
+      <div class="skill-tag"><span class="ico"></span> Flutter / Dart</div>
+      <div class="skill-tag"><span class="ico"></span> Java / Android</div>
+      <div class="skill-tag"><span class="ico"></span> ASP.Net(Core, MVC, WEBFORM)</div>
+      <div class="skill-tag"><span class="ico"></span> HTML · CSS · JS</div>
+      <div class="skill-tag"><span class="ico"></span> PHP / MySQL / AJAX</div>
+      <div class="skill-tag"><span class="ico"></span> Swift</div>
+      <div class="skill-tag"><span class="ico"></span> C#</div>
+    </div>
+
+    <!-- NOUVEAU : contenu du diplôme -->
+    <div id="diplomas" class="tab-content">
+      <div class="skill-tag"><span class="ico">🎓</span> Brevet d'Etude du Premier Cycle (BEPC) – Allemand</div>
+      <div class="skill-tag"><span class="ico">📘</span> Baccalauréat ESG</div>
+    </div>
+
+    <div id="language" class="tab-content">
+      <div class="skill-tag"><span class="ico">🇫🇷</span> Français — Natif</div>
+      <div class="skill-tag"><span class="ico">🇬🇧</span> Anglais — Intermédiaire</div>
+    </div>
+    
+  </section>
+
+  <hr class="divider" style="margin-top:40px">
+
+  <!-- ── BRANDS / OUTILS ── -->
+  <section class="fade-in">
+    <h2 class="section-title">Outils &amp; Environnements</h2>
+    <p class="brands-sub">Technologies que j'utilise au quotidien</p>
+    <div class="brands-row">
+      <span class="brand-name">Visual Studio Code</span>
+      <span class="brand-name">Visual Studio 202+ </span>
+      <span class="brand-name">Android Studio</span>
+      <span class="brand-name">Apache NetBeans</span>
+      <span class="brand-name">GitHub</span>
+      <span class="brand-name">Unity</span>
+      <span class="brand-name">Apache NetBeans</span>
+      <span class="brand-name">WordPress</span>
+      <span class="brand-name">Postman</span>
+      <span class="brand-name">Code Block</span>
+      <span class="brand-name">NaviCat</span>
+      <span class="brand-name">PhotoShop</span>
+    </div>
+  </section>
+
+  <hr class="divider" style="margin-top:40px">
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="fade-in">
+    <h2 class="section-title">Projets</h2>
+    <div class="proj-tabs tabs">
+      <button class="tab-btn active">📌 En vedette</button>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-img placeholder" style="display:flex;align-items:center;justify-content:center;font-size:40px;">💻🖥️</div>
+        <div class="proj-info">
+          <div class="proj-name">App Desktop · Caisse de vente</div>
+          <div class="proj-desc"> Dans ce projet il s'agissait de concevoir une caisse enregistreuse avec des menus prédéfinis suivi d'un QR 
+            Code à la fin de la facture</div>
+          <div class="proj-tags">
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">Firebase</span>
+            <span class="proj-tag">UI Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img placeholder2"><img src="./images/CAMAlert.png" alt="Accueil CAM-ALERT"></div>
+        <div class="proj-info">
+          <div class="proj-name">Application Web · CAM-ALERT 🌐</div>
+          <div class="proj-desc">Plateforme fictive de signalement de personnes disparrues et des avis de recherches</div>
+          <div class="proj-tags">
+            <span class="proj-tag">ASP.Net-WEBFORM</span>
+            <span class="proj-tag">SSMS</span>
+            <span class="proj-tag"><a href="https://aurele.bsite.net/" target="_blank">CAM-ALERT</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img placeholder3"><img src="./images/IMG_1233.JPG" alt="Reconnaissance Faciale"></div>
+        <div class="proj-info">
+          <div class="proj-name">Application Desktop · Application de Reconnaissance Faciale</div>
+          <div class="proj-desc">Dans le cadre de la Programmation Multicouche il était question de créer une application de reconnaissance faciale du corps administratif d'une Structure</div>
+          <div class="proj-tags">
+            <span class="proj-tag">C# (Multicouches)</span>
+            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag">UX Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img placeholder4"><img src="./images/JeuFPS.png" alt="Jeu FPS"></div>
+        <div class="proj-info">
+          <div class="proj-name">Création d'un Jeu de tir à Première personne (FPS)</div>
+          <div class="proj-desc">Dans le cadre du cours de développement d'Applications Informatiques il était question de développer une application ou un programme dans le langage de notre choix</div>
+          <div class="proj-tags">
+            <span class="proj-tag">C# Avancé</span>
+            <span class="proj-tag"><a href="https://survivor-shooter3d.vercel.app/" target="_blank"> Link SurvivorShooter3D</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img placeholder5"><img src="./images/CandyCrush.jpg" alt="Candy Crush"></div>
+        <div class="proj-info">
+          <div class="proj-name">Application Desktop · Réalisation d'un jeu en 2D : CANDY CRUSH</div>
+          <div class="proj-desc">Dans le cadre du cours de C# Avancé il était question de réaliser un jeu de notre choix</div>
+          <div class="proj-tags">
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag">UX Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" style="margin-top:40px">
+
+  <!-- ── CONTACT + FORMULAIRE ── -->
+  <section id="contact" class="fade-in">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-card"><span class="ico">📍</span> Douala, Cameroun</div>
+      <div class="contact-card"><span class="ico">🌐</span> <a href="#">www.votresite.com</a></div>
+      <div class="contact-card"><span class="ico">📞</span> +237 693713944</div>
+      <div class="contact-card"><span class="ico">✉️</span> <a href="mailto:aureledorian@gmail.com">aureledorian@gmail.com</a></div>
+      <div class="contact-card"><span class="ico">✉️</span> <a href="mailto:aurelenj@gmail.com">aurelenj@gmail.com</a></div>
+    </div>
+
+    <!-- Formulaire de contact -->
+    <div class="form-card">
+      <div class="form-title">📬 Envoyez-moi un message</div>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Nom complet</label>
+          <input type="text" id="name" name="name" required placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" name="email" required placeholder="exemple@domaine.com">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Envoyer ➤</button>
+      </form>
+      <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">* Le message sera envoyé à mes deux adresses email.</p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="fade-in">
+    <div class="footer-block">
+      <div class="footer-block-title">ℹ️ &nbsp;Formation</div>
+      <p>Institut Universitaire de la Côte · Douala · Filière TI</p>
+      <p style="margin-top:4px">Spécialité : <a href="https://myiuc.com">Programmation &amp; Applications Mobiles</a></p>
+    </div>
+    <div class="footer-block">
+      <div class="footer-block-title">🌐 &nbsp;Réseaux</div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/aurele-njeuha-408162409/">LinkedIn</a>
+        <a href="https://github.com/aurelenj-dorian">GitHub</a>
+        <a href="https://x.com/aureledorian?s=21">Twitter / X</a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // ── TAB SWITCHER ──
+  function switchTab(e, id) {
+    const parent = e.target.closest('section') || document.body;
+    parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  }
+
+  // ── SCROLL FADE-IN ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── GESTIONNAIRE DU FORMULAIRE (envoi aux deux adresses) ──
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Veuillez remplir tous les champs.');
+        return;
+      }
+
+      const recipients = 'aureledorian@gmail.com,aurelenj@gmail.com';
+      const subject = `Contact depuis portfolio – ${name}`;
+      const body = `Nom : ${name}%0AEmail : ${email}%0A%0AMessage :%0A${encodeURIComponent(message)}`;
+      window.location.href = `mailto:${recipients}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      alert('✅ Votre message a été préparé dans votre messagerie. Merci !');
+      contactForm.reset();
+    });
+  }
+
+  // ── GESTIONNAIRE DE THÈME ──
+  const themeSelect = document.getElementById('themeSelect');
+  // Appliquer le thème sauvegardé ou par défaut
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+  document.body.className = `theme-${savedTheme}`;
+  themeSelect.value = savedTheme;
+
+  themeSelect.addEventListener('change', function() {
+    const newTheme = this.value;
+    document.body.className = `theme-${newTheme}`;
+    localStorage.setItem('portfolio-theme', newTheme);
+  });
+</script>
+</body>
+</html>
