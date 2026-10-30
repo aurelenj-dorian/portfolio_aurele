@@ -8,6 +8,7 @@ Règles absolues :
 
 - Le contour ne croise jamais le visage : le mot commence sous le menton.
 - Aucun texte ne passe sur le mot : le contenu du héros démarre sous lui, quelle que soit la taille de la fenêtre.
+- Le mot n'apparaît jamais dans une police de secours : il attend la sienne, et le portrait attend d'être complet. Tester sur connexion lente, pas seulement en local.
 
 ## Style
 

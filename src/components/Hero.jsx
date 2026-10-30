@@ -5,6 +5,7 @@ import portrait from '../assets/portrait-profil.webp'
 import { profile } from '../data/profile.js'
 
 const WORD = ['DEV', 'SEC', 'OPS']
+const DISPLAY_FONT = '900 1em "Sofia Sans Extra Condensed Variable"'
 
 function HeroWord({ outline = false }) {
   let letterIndex = 0
@@ -25,18 +26,28 @@ function HeroWord({ outline = false }) {
 
 export function Hero() {
   const heroRef = useRef(null)
+  const portraitRef = useRef(null)
   const [ready, setReady] = useState(false)
+  const [portraitReady, setPortraitReady] = useState(false)
 
-  // L'animation attend la police : la largeur du mot géant en dépend.
+  // Le mot géant est décoratif et sa largeur dépend de sa police :
+  // il reste caché tant qu'elle n'est pas arrivée, sans délai de secours.
   useEffect(() => {
     let alive = true
-    const start = () => alive && setReady(true)
-    const timeout = setTimeout(start, 900)
-    document.fonts?.ready.then(start)
+    document.fonts
+      .load(DISPLAY_FONT, WORD.join(''))
+      .then((faces) => {
+        if (alive && faces.length > 0) setReady(true)
+      })
+      .catch(() => {})
     return () => {
       alive = false
-      clearTimeout(timeout)
     }
+  }, [])
+
+  // Une image déjà en cache peut être complète avant le rendu.
+  useEffect(() => {
+    if (portraitRef.current?.complete && portraitRef.current.naturalWidth > 0) setPortraitReady(true)
   }, [])
 
   // Léger décalage de profondeur entre le mot et le portrait.
@@ -65,7 +76,9 @@ export function Hero() {
       <div className="hero__stage">
         <HeroWord />
         <img
-          className="hero__portrait"
+          ref={portraitRef}
+          className={`hero__portrait ${portraitReady ? 'is-loaded' : ''}`}
+          onLoad={() => setPortraitReady(true)}
           src={portrait}
           alt="Portrait de Njeuha Aurele Dorian en costume bleu marine"
           width="300"

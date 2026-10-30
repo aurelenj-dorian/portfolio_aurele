@@ -20,10 +20,23 @@
     <meta property="og:image" content="https://portfolio-aurele.vercel.app/og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/node_modules/@fontsource-variable/sofia-sans-extra-condensed/files/sofia-sans-extra-condensed-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/src/assets/portrait-profil.webp" as="image" fetchpriority="high" />
     <script src="/theme.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="boot">
+        <p class="boot__name">NJEUHA AURELE DORIAN</p>
+        <p class="boot__role">Développeur · Système, réseau &amp; cybersécurité</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

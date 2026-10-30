@@ -91,7 +91,7 @@
   mask-image: linear-gradient(to bottom, #000 64%, transparent 86%);
 }
 
-.is-ready .hero__portrait {
+.hero__portrait.is-loaded {
   opacity: 1;
   transform: translate(calc(-50% + var(--px) * 12px), 0);
 }

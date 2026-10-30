@@ -1,5 +1,14 @@
+/* Police de secours réduite à la chasse de la police d'affichage :
+   pendant le chargement, les titres gardent leur place. */
+@font-face {
+  font-family: 'Display Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Roboto Bold'), local('Roboto-Bold'), local('Helvetica Bold');
+  font-weight: 100 900;
+  size-adjust: 64%;
+}
+
 :root {
-  --font-display: 'Sofia Sans Extra Condensed Variable', 'Arial Narrow', Impact, sans-serif;
+  --font-display: 'Sofia Sans Extra Condensed Variable', 'Display Fallback', Impact, sans-serif;
   --font-text: 'Instrument Sans Variable', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
 
