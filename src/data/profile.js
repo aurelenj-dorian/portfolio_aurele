@@ -49,18 +49,18 @@ export const timeline = [
     link: { to: '/projets/plateforme-duerp', label: "Voir l'étude de cas" },
   },
   {
-    period: 'Diplôme',
+    period: 'Octobre 2025 - septembre 2026',
     title: "Diplôme d'Études Collégiales en Programmation et Applications Mobiles",
     place: "CCNB Canada, délocalisé à l'Institut Universitaire de la Côte, Douala",
     text: 'Filière Technologies de l’Information : développement mobile, web et desktop, bases de données, systèmes d’information, réseaux.',
   },
   {
-    period: 'Diplôme',
+    period: 'Septembre 2024 - Juillet 2025',
     title: 'Baccalauréat ESG · Série C',
     place: 'Mathématiques et sciences physiques',
   },
   {
-    period: 'Diplôme',
+    period: 'Septembre 2020 - Juin 2021',
     title: "Brevet d'Études du Premier Cycle",
     place: 'Option allemand',
   },
