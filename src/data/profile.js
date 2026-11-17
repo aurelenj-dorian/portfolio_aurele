@@ -90,7 +90,7 @@ export const timeline = [
     text: 'Filière Technologies de l’Information : développement mobile, web et desktop, bases de données, systèmes d’information, réseaux.',
   },
   {
-    period: 'Septembre 2024 - Juillet 2025',
+    period: 'Septembre 2023 - Juillet 2024',
     title: 'Baccalauréat ESG · Série C',
     place: 'Mathématiques et sciences physiques',
   },
