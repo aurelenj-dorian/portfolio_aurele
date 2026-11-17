@@ -37,7 +37,7 @@ export const certifications = [
 export const profile = {
   name: 'NJEUHA AURELE DORIAN',
   nameLines: ['NJEUHA', 'AURELE', 'DORIAN'],
-  role: 'Développeur · Système, réseau & cybersécurité',
+  role: 'Développeur · Administration Système, Réseau & Cybersécurité',
   tagline:
     'Je développe des applications web, mobiles et desktop. Je me forme à les déployer, les administrer et les protéger.',
   availability: 'Ouvert aux opportunités',
