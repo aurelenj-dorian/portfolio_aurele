@@ -1,9 +1,9 @@
 import { Link } from 'react-router'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import portrait from '../assets/portrait-face.webp'
 import { PageHead } from '../components/PageHead.jsx'
 import { Reveal } from '../components/Reveal.jsx'
-import { profile, timeline } from '../data/profile.js'
+import { certifications, profile, timeline } from '../data/profile.js'
 
 export function Parcours() {
   return (
@@ -53,6 +53,24 @@ export function Parcours() {
             </Reveal>
           ))}
         </ol>
+      </section>
+
+      <section className="section" aria-labelledby="certifications-titre">
+        <h2 id="certifications-titre" className="section-head__title">
+          Certifications
+        </h2>
+        <ul className="certs">
+          {certifications.map((cert, index) => (
+            <Reveal as="li" key={cert.href} className="cert" delay={(index % 3) * 70}>
+              <p className="cert__issuer">{cert.issuer}</p>
+              <h3 className="cert__title">{cert.title}</h3>
+              <p className="cert__date">{cert.date}</p>
+              <a href={cert.href} target="_blank" rel="noreferrer" className="link-arrow">
+                Vérifier la certification <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+            </Reveal>
+          ))}
+        </ul>
       </section>
     </>
   )

@@ -1,7 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
-import { Menu, Moon, Sun, X } from 'lucide-react'
+import { Github, Linkedin, Menu, Moon, Sun, X } from 'lucide-react'
 import { profile } from '../data/profile.js'
+
+const socialIcons = { GitHub: Github, LinkedIn: Linkedin }
+const headerSocials = profile.socials.filter((social) => socialIcons[social.label])
+
+function SocialLinks({ className }) {
+  return headerSocials.map(({ label, href }) => {
+    const Icon = socialIcons[label]
+    return (
+      <a
+        key={label}
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className={className}
+        aria-label={`${label} (nouvel onglet)`}
+        title={label}
+      >
+        <Icon size={18} aria-hidden="true" />
+      </a>
+    )
+  })
+}
 
 const navItems = [
   { to: '/', label: 'Accueil', end: true },
@@ -58,6 +80,7 @@ export function Header() {
       </nav>
 
       <div className="site-header__actions">
+        <SocialLinks className="icon-btn social-btn" />
         <ThemeToggle />
         <button
           type="button"
@@ -99,7 +122,12 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
-        <p className="mobile-menu__foot">{profile.location}</p>
+        <div className="mobile-menu__foot">
+          <p>{profile.location}</p>
+          <div className="mobile-menu__socials">
+            <SocialLinks className="icon-btn" />
+          </div>
+        </div>
       </dialog>
     </header>
   )

@@ -1,5 +1,39 @@
 // Tout le contenu du site vit dans src/data : c'est ce que le futur backoffice remplacera.
 
+// Relevées sur LinkedIn (Licences et certifications), liens de vérification directs.
+export const certifications = [
+  {
+    title: 'Introduction to Git',
+    issuer: 'DataCamp',
+    date: 'Novembre 2026',
+    href: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/8b5d64ff0400a27e996bc93bfbb90556a4940738',
+  },
+  {
+    title: 'Maximize Productivity With AI Tools',
+    issuer: 'Google',
+    date: 'Novembre 2026',
+    href: 'https://www.coursera.org/account/accomplishments/records/VPTBV960OH3K',
+  },
+  {
+    title: 'Créer des bases de données PostgreSQL',
+    issuer: 'DataCamp',
+    date: 'Novembre 2026',
+    href: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/f3f62fc988e21a1021ecb17d6be3b6f6a311f64f',
+  },
+  {
+    title: 'Introduction à MongoDB en Python',
+    issuer: 'DataCamp',
+    date: 'Novembre 2026',
+    href: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/c74b5f8e67121df8d6d62b0736e3195b856436b2',
+  },
+  {
+    title: 'Introduction to AI',
+    issuer: 'Google',
+    date: 'Octobre 2026',
+    href: 'https://www.coursera.org/account/accomplishments/records/QNY0MK4DIYQ8',
+  },
+]
+
 export const profile = {
   name: 'NJEUHA AURELE DORIAN',
   nameLines: ['NJEUHA', 'AURELE', 'DORIAN'],
@@ -20,6 +54,7 @@ export const profile = {
   stats: [
     { value: '6', label: 'Projets réalisés' },
     { value: '10+', label: 'Technologies pratiquées' },
+    { value: String(certifications.length), label: 'Certifications' },
   ],
   quote: "La sécurité n'est pas une étape de fin de projet. C'est une exigence à chaque ligne.",
   bio: [

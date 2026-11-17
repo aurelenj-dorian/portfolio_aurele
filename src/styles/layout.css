@@ -147,10 +147,19 @@
 }
 
 .mobile-menu__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: auto;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--ink-2);
+}
+
+.mobile-menu__socials {
+  display: flex;
+  gap: 8px;
 }
 
 /* Pied de page */
@@ -304,6 +313,11 @@
 
   .menu-btn {
     display: inline-grid;
+  }
+
+  /* Sur petit écran, GitHub et LinkedIn passent dans le menu. */
+  .social-btn {
+    display: none;
   }
 
   .section-head {
